@@ -1,13 +1,26 @@
 version: '3.1'
 
 services:
-  db:
+  psql:
     image: postgres:10
     restart: always
     env_file:
      .env
-    container_name: "my_database"
+    container_name: "database"
     volumes:
       - .:/data
     ports:
-      - "6234:5432"
+      - "8234:5432"
+
+  # Setup grafana dashboards
+  grafana:
+     image: grafana/grafana:6.5.0
+     restart: always
+     container_name: "grafana_bashboards"
+     ports:
+       - "4000:3000"
+     links:
+       - psql
+     user: "104"
+     depends_on:
+       - psql

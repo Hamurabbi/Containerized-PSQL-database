@@ -20,7 +20,7 @@ def populateDB(dataframe, engine_url):
 def main():
 
 	df = pd.read_csv('data/test_data.csv')
-	populateDB(df,'postgresql://postgres:postgres@localhost:6234/my_data')
+	populateDB(df,'postgresql://postgres:postgres@localhost:8234/my_data')
 
 if __name__ == '__main__':
     main()
